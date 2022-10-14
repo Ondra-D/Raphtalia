@@ -22,7 +22,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-autoPost() //Remove this if not using top.gg
+autoPost()
 
 function autoPost() {
 
