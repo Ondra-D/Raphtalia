@@ -1,0 +1,2 @@
+# Raphtalia
+Raphtalia Discord bot
