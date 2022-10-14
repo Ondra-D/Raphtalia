@@ -1,0 +1,6 @@
+{
+  "token": "bot token",
+  "topggtoken": "top.gg token (Not required; remove autoPost() from index.js",
+  "id": "id of the bot"
+
+}
