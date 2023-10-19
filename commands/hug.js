@@ -10,15 +10,13 @@ module.exports = {
     .addUserOption(option => option.setName('user').setDescription('Select a user to hug').setRequired(false)),
     async execute(interaction) {
        
-        const member = interaction.options.getUser('user');
+        const member = interaction.options.getMember('user');
         const hug = await neko.hug();
 
-        const bot = interaction.client.user.displayName 
-        const author = interaction.user.displayName
+        const bot = interaction.client.user.username 
+        const author = interaction.member.displayName
         
         if(!member) {
-            console.log(member)
-
             const hugEmbed = {
                     color: 0xDC143C,
                     title: `**${bot} hugs ${author}**`,
@@ -31,10 +29,9 @@ module.exports = {
 
 
     }else{
-        console.log("y")
         const hugEmbed = {
             color: 0xDC143C,
-            title: `**${author} hugs ${member.displayName}**`,
+            title: `**${author} hugs ${member.user.username}**`,
             description: ``,
             image: {
                 url: hug.url
