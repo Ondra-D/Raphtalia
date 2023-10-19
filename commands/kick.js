@@ -8,7 +8,7 @@ module.exports = {
     .addStringOption(option => option.setName('reason').setDescription('Reason for kicking').setRequired(false))
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
     async execute(interaction) {
-        const user = interaction.options.getMember('user');
+        const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('reason');
 
         if(interaction.appPermissions.any(PermissionsBitField.Flags.KickMembers) === false) return await interaction.reply({ content: "I dont have permissions to do that!", ephemeral: true })
