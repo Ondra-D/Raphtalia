@@ -10,11 +10,11 @@ module.exports = {
     .addUserOption(option => option.setName('user').setDescription('Select a user to cuddle').setRequired(false)),
     async execute(interaction) {
        
-        const member = interaction.options.getMember('user');
+        const member = interaction.options.getUser('user');
         const cuddle = await neko.cuddle();
 
-        const bot = interaction.client.user.username 
-        const author = interaction.member.displayName
+        const bot = interaction.client.user.displayName 
+        const author = interaction.user.displayName
         
         if(!member) {
             const cuddleEmbed = {
@@ -31,7 +31,7 @@ module.exports = {
     }else{
         const cuddleEmbed = {
             color: 0xDC143C,
-            title: `**${author} cuddles ${member.user.username}**`,
+            title: `**${author} cuddles ${member.displayName}**`,
             description: ``,
             image: {
                 url: cuddle.url

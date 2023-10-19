@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('sends a picture of your avatar.')
     .addUserOption(option => option.setName('user').setDescription('Select the user.').setRequired(false)),
     async execute(interaction) {
-        const user = interaction.options.getMember('user');
+        const user = interaction.options.getUser('user');
 
 
 

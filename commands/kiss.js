@@ -10,11 +10,11 @@ module.exports = {
     .addUserOption(option => option.setName('user').setDescription('Select a user to kiss').setRequired(false)),
     async execute(interaction) {
        
-        const member = interaction.options.getMember('user');
+        const member = interaction.options.getUser('user');
         const kiss = await neko.kiss();
 
-        const bot = interaction.client.user.username 
-        const author = interaction.member.displayName
+        const bot = interaction.client.user.displayName 
+        const author = interaction.user.displayName
         
         if(!member) {
             const kissEmbed = {
@@ -31,7 +31,7 @@ module.exports = {
     }else{
         const kissEmbed = {
             color: 0xDC143C,
-            title: `**${author} kisses ${member.user.username}**`,
+            title: `**${author} kisses ${member.displayName}**`,
             description: ``,
             image: {
                 url: kiss.url

@@ -10,11 +10,11 @@ module.exports = {
     .addUserOption(option => option.setName('user').setDescription('Select a user to pat').setRequired(false)),
     async execute(interaction) {
        
-        const member = interaction.options.getMember('user');
+        const member = interaction.options.getUser('user');
         const pat = await neko.pat();
 
-        const bot = interaction.client.user.username 
-        const author = interaction.member.displayName
+        const bot = interaction.client.user.displayName 
+        const author = interaction.user.displayName
         
         if(!member) {
             const patEmbed = {
@@ -31,7 +31,7 @@ module.exports = {
     }else{
         const patEmbed = {
             color: 0xDC143C,
-            title: `**${author} pats ${member.user.username}**`,
+            title: `**${author} pats ${member.displayName}**`,
             description: ``,
             image: {
                 url: pat.url

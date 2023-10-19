@@ -10,11 +10,11 @@ module.exports = {
     .addUserOption(option => option.setName('user').setDescription('Select a user to slap').setRequired(false)),
     async execute(interaction) {
        
-        const member = interaction.options.getMember('user');
+        const member = interaction.options.getUser('user');
         const slap = await neko.slap();
 
-        const bot = interaction.client.user.username 
-        const author = interaction.member.displayName
+        const bot = interaction.client.user.displayName 
+        const author = interaction.user.displayName
         
         if(!member) {
             const slapEmbed = {
@@ -31,7 +31,7 @@ module.exports = {
     }else{
         const slapEmbed = {
             color: 0xDC143C,
-            title: `**${author} slaps ${member.user.username}**`,
+            title: `**${author} slaps ${member.displayName}**`,
             description: ``,
             image: {
                 url: slap.url

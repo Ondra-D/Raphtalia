@@ -23,7 +23,7 @@ module.exports = {
           .addStringOption(option => option.setName('tags').setDescription('Separate tags with spaces and words with underscores.'))),
 
     async execute(interaction) {
-      const vote = await api.hasVoted(interaction.member.id)
+      const vote = await api.hasVoted(interaction.user.id)
 
 
         if(!interaction.channel.nsfw) return await interaction.reply({ content: "This channel is not nsfw!", ephemeral: true })
@@ -71,7 +71,7 @@ module.exports = {
 
 
  async function getImage(type) {
-  const response = await fetch('https://api.raphtalia.xyz/' + type);
+  const response = await fetch("https://api.raphtalia.xyz/" + type);
   const data = await response.json();
   return data.image;
 }

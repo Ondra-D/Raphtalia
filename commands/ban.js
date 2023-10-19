@@ -8,7 +8,7 @@ module.exports = {
     .addStringOption(option => option.setName('reason').setDescription('Reason for banning').setRequired(false))
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     async execute(interaction) {
-        const user = interaction.options.getMember('user');
+        const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('reason');
 
         if(interaction.appPermissions.any(PermissionsBitField.Flags.BanMembers) === false) return await interaction.reply({ content: "I dont have the permissions to do that!", ephemeral: true })
