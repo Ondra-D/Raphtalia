@@ -31,6 +31,10 @@ const ap = AutoPoster(topggtoken, client)
 ap.on('posted', () => {
 	console.log('Posted stats to Top.gg!')
  })
+
+ap.on('error', () => {
+	console.log('Top.gg token is missing or is invalid.')
+	})
 }
 
 client.on('interactionCreate', async interaction => {
@@ -47,10 +51,6 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
-
-
-
-
 
 
 function PushCommands() {
@@ -90,5 +90,4 @@ function PushCommands() {
 
 }
 
-// noinspection JSIgnoredPromiseFromCall
 client.login(token);

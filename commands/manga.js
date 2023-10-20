@@ -15,7 +15,7 @@ module.exports = {
         const input = interaction.options.getString('manga');
 
     
-         Anilist.search("manga", input).then((data) =>{
+         Anilist.searchEntry.manga(input).then((data) =>{
 
             if(data.pageInfo.total < 1) return interaction.reply({ content: 'I cannot find this manga', ephemeral: true });
             const id  = data.media[0].id
@@ -41,17 +41,17 @@ module.exports = {
                 Fields: [
                     {
                         name: "English",
-                        value: manga.title.romaji,
+                        value: manga.title.romaji  || "",
                         inline: true
                     },
                     {
                         name: "Native",
-                        value: manga.title.native,
+                        value: manga.title.native  || "",
                         inline: true
                     },
                     {
                         name: "Type",
-                        value: manga.format,
+                        value: manga.format  || "",
                         inline: true
                     },
                     {
@@ -66,12 +66,12 @@ module.exports = {
                     },
                     {
                         name: "Status",
-                        value: manga.status,
+                        value: manga.status || "",
                         inline: true
                     },
                     {
                         name: "Average Score",
-                        value: manga.averageScore,
+                        value: manga.averageScore  || "",
                         inline: true
                     },
                     {
@@ -81,7 +81,7 @@ module.exports = {
                     },
                     {
                         name: "Adult",
-                        value: manga.isAdult,
+                        value: manga.isAdult  || "",
                         inline: true
                     },
 

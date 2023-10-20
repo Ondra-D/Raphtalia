@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, MembershipScreeningFieldType, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MembershipScreeningFieldType, PermissionsBitField, ButtonStyle, ButtonBuilder   } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,13 +10,23 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('reason');
+        const guildMember = interaction.guild.members.cache.get(user.id);
+
 
         if(interaction.appPermissions.any(PermissionsBitField.Flags.KickMembers) === false) return await interaction.reply({ content: "I dont have permissions to do that!", ephemeral: true })
 
-        if(!user) return await interaction.reply({ content: "I cant find that user!", ephemeral: true })
-        if(!user.kickable) return await interaction.reply({ content: "I cant kick that user!", ephemeral: true })
-        await user.kick({ days: 0, reason: reason });
+        if(!guildMember) return await interaction.reply({ content: "I cant find that user!", ephemeral: true })
+        if(!guildMember.kickable) return await interaction.reply({ content: "I cant kick that user!", ephemeral: true })
 
-        await interaction.reply({ content: `Successfully kicked ${user}` });
+        if(user === user.bot || reason === null ) {
+            await user.send(`You have been kicked from ${interaction.guild.name}.`)
+        } else  {
+            await user.send(`You have been kicked from ${interaction.guild.name} for ${reason}.`)
+
+        }
+
+        await guildMember.kick({ reason: reason });
+
+        await interaction.reply({ content: `Successfully kicked ${user} (${user.id})`, ephemeral: true });
  }
 };

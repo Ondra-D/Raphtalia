@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits, MembershipScreeningFieldType, PermissionsBitField } = require('discord.js');
 const fetch = require('node-fetch');
 const Topgg = require("@top-gg/sdk")
-const { topggtoken } = require("../config.json");
+const { topggtoken } = require('../config.json');
 const api = new Topgg.Api(topggtoken)
 
 module.exports = {
@@ -23,12 +23,19 @@ module.exports = {
           .addStringOption(option => option.setName('tags').setDescription('Separate tags with spaces and words with underscores.'))),
 
     async execute(interaction) {
-      const vote = await api.hasVoted(interaction.user.id)
 
+
+       async function hasUserVoted() {
+           try {
+               await api.hasVoted(interaction.user.id)
+           } catch (error) {
+               return true
+           }
+           return await api.hasVoted(interaction.user.id)
+       }
 
         if(!interaction.channel.nsfw) return await interaction.reply({ content: "This channel is not nsfw!", ephemeral: true })
-        if(vote === false) return await interaction.reply({ content: "You must vote [here](https://top.gg/bot/697047267265216543) to use this command.", ephemeral: true })
-
+        if(await hasUserVoted() === false) return await interaction.reply({ content: "You must vote [here](https://top.gg/bot/697047267265216543) to use this command.", ephemeral: true })
 
         const feet = interaction.options._subcommand === 'feet';
         const catgirl = interaction.options._subcommand === 'catgirl';

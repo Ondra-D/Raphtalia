@@ -13,7 +13,7 @@ module.exports = {
         const input = interaction.options.getString('name');
 
     
-         Anilist.search("char", input).then((data) =>{
+         Anilist.searchEntry.character(input).then((data) =>{
 
             if(data.pageInfo.total < 1) return interaction.reply({ content: 'I cannot find this character', ephemeral: true });
             const id  = data.characters[0].id

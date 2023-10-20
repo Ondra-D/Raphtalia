@@ -15,7 +15,7 @@ module.exports = {
         const input = interaction.options.getString('anime');
 
     
-         Anilist.search("anime", input).then((data) =>{
+         Anilist.searchEntry.anime(input).then((data) =>{
 
             if(data.pageInfo.total < 1) return interaction.reply({ content: 'I cannot find this anime', ephemeral: true });
             const id  = data.media[0].id
