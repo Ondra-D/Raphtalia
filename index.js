@@ -30,11 +30,11 @@ const ap = AutoPoster(topggtoken, client)
 
 ap.on('posted', () => {
 	console.log('Posted stats to Top.gg!')
- })
+})
 
 ap.on('error', () => {
 	console.log('Top.gg token is missing or is invalid.')
-	})
+})
 }
 
 client.on('interactionCreate', async interaction => {

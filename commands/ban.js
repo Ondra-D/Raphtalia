@@ -27,7 +27,7 @@ module.exports = {
         if(!guildMember) return await interaction.reply({ content: "I cannot find that user!", ephemeral: true })
         if(!guildMember.bannable) return await interaction.reply({ content: "I cannot ban that user!", ephemeral: true })
 
-        if(user === user.bot || reason === null ) {
+        if(user.bot || reason === null ) {
             await user.send(`You have been banned from ${interaction.guild.name}.`)
         } else  {
             await user.send(`You have been banned from ${interaction.guild.name} for ${reason}.`)

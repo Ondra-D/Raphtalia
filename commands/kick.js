@@ -18,7 +18,7 @@ module.exports = {
         if(!guildMember) return await interaction.reply({ content: "I cant find that user!", ephemeral: true })
         if(!guildMember.kickable) return await interaction.reply({ content: "I cant kick that user!", ephemeral: true })
 
-        if(user === user.bot || reason === null ) {
+        if(user.bot || reason === null ) {
             await user.send(`You have been kicked from ${interaction.guild.name}.`)
         } else  {
             await user.send(`You have been kicked from ${interaction.guild.name} for ${reason}.`)

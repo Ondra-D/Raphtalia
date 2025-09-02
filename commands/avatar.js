@@ -1,5 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, MembershipScreeningFieldType, PermissionsBitField } = require('discord.js');
-const fetch = require('node-fetch');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +13,7 @@ module.exports = {
         if(!user) {
             await interaction.reply({ content: interaction.member.displayAvatarURL() });
         } else {
-            await interaction.reply({ content: user.displayAvatarURL() }); }}
-
-
-        }  
+            await interaction.reply({ content: user.displayAvatarURL() });
+        }
+    }
+}  

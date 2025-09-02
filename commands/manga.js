@@ -1,5 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, MembershipScreeningFieldType, PermissionsBitField} = require('discord.js');
-const fetch = require('node-fetch');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -38,7 +37,7 @@ module.exports = {
                 color: 0xDC143C,
                 "url": manga.siteUrl,
                 "description": description3,
-                Fields: [
+                fields: [
                     {
                         name: "English",
                         value: manga.title.romaji  || "",
